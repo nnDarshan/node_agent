@@ -1,0 +1,180 @@
+---
+object_details:
+  general:
+      atoms:
+          apt:
+            description: "Manages apt-packages"
+            requirement:
+                - "python-apt"
+                - "aptitude"
+          archive:
+            description: "Creates a compressed archive of one or more files or trees"
+            requirement: None
+          async_status:
+            description: "Obtain status of asynchronous task"
+            requirement: None
+          at:
+            description: "Schedule the execution of a command or script file via the at command"
+            requirement: None
+          authorized_key:
+            description: "Adds or removes an SSH authorized key"
+            requirement: None
+          capabilities:
+            description: "Manage Linux capabilities"
+            requirement: None
+          command:
+            description: "Executes a command on a remote node"
+            requirement: None
+          copy:
+            description: "Copies files to remote locations"
+            requirement: None
+          cron:
+            description: "Manage cron.d and crontab entries"
+            requirement:
+                - "cron"
+          cronvar:
+            description: "Manage variables in crontabs"
+            requirement:
+                - "cron"
+          crypttab:
+            description: "Encrypted Linux block devices"
+            requirement: None
+          debug:
+            description: "Print statements during execution"
+            requirement: None
+          dnf:
+            description: "Manages packages with the dnf package manager"
+            requirement:
+                - "python >= 2.6"
+                - "python-dnf"
+          easy_install:
+            description: "Installs Python libraries"
+            requirement:
+                - "virtualenv"
+          expect:
+            description: "Executes a command and responds to prompts"
+            requirement:
+                - "python >= 2.6"
+                - "pexpect >= 3.3"
+          fail:
+            description: "Fail with custom message"
+            requirement: None
+          fetch:
+            description: "Fetches a file from remote nodes"
+            requirement: None
+          file:
+            description: "Sets attributes of files"
+            requirement: None
+          filesystem:
+            description: "Makes file system on block device"
+            requirement: None
+          find:
+            description: "return a list of files based on specific criteria"
+            requirement: None
+          firewalld:
+            description: "Manage arbitrary ports/services with firewalld"
+            requirement:
+                - "firewalld >= 0.2.11"
+          get_url:
+            description: "Downloads files from HTTP, HTTPS, or FTP to node"
+            requirement: None
+          gluster_volume:
+            description: "Manage GlusterFS volumes"
+            requirement: None
+          hostname:
+            description: "Manage hostname"
+            requirement:
+                - "hostname"
+          known_hosts:
+            description: "Add or remove a host from the known_hosts file"
+            requirement: None
+          lvg:
+            description: "Configure LVM volume groups"
+            requirement: None
+          lvol:
+            description: "Configure LVM logical volumes"
+            requirement: None
+          mount:
+            description: "Control active and configured mount points"
+            requirement: None
+          pause:
+            description: "Pause playbook execution"
+            requirement: None
+          ping:
+            description: "Try to connect to host, verify a usable python and return pong on success"
+            requirement: None
+          pip:
+            description: "Manages Python library dependencies"
+            requirement:
+                - "virtualenv"
+                - "pip"
+          replace:
+            description: "Replace all instances of a particular string in a file using a back-referenced regular expression"
+            requirement: None
+          rpm_key:
+            description: "Adds or removes a gpg key from the rpm db"
+            requirement: None
+          script:
+            description: "Runs a local script on a remote node after transferring it"
+            requirement: None
+          seboolean:
+            description: "Toggles SELinux booleans"
+            requirement: None
+          sefcontext:
+            description: "Manages SELinux file context mapping definitions"
+            requirement:
+                - "libselinux-python"
+                - "policycoreutils-python"
+          selinux:
+            description: "Change policy and state of SELinux"
+            requirement:
+                - "libselinux-python"
+          selinux_permissive:
+            description: "Change permissive domain in SELinux policy"
+            requirement:
+                - "policycoreutils-python"
+          service:
+            description: "Manage services"
+            requirement: None
+          setup:
+            description: "Gathers facts about remote hosts"
+            requirement: None
+          set_fact:
+            description: "Set host facts from a task"
+            requirement: None
+          shell:
+            description: "Execute commands in nodes"
+            requirement: None
+          stat:
+            description: "Retrieve file or file system status"
+            requirement: None
+          supervisorctl:
+            description: "Manage the state of a program or group of programs running via supervisord"
+            requirement:
+                - "supervisorctl"
+          synchronize:
+            description: "Uses rsync to make synchronizing file paths in your playbooks quick and easy"
+            requirement: None
+          systemd:
+            description: "Manage services"
+            requirement: None
+          timezone:
+            description: "Configure timezone setting"
+            requirement: None
+          user:
+            description: "Manage user accounts"
+            requirement:
+                - "useradd"
+                - "userdel"
+                - "usermod"
+          wait_for:
+            description: "Waits for a condition before continuing"
+            requirement: None
+          yum:
+            description: "Manages packages with the yum package manager"
+            requirement:
+                - "yum"
+          yum_repository:
+            description: "Add and remove YUM repositories"
+            requirement: None
+---
