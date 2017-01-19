@@ -30,16 +30,6 @@ namespace.tendrl.node_agent:
           type: String
       enabled: true
       value: nodes/$Node_context.node_id/Memory
-    Service:
-      attrs:
-        running:
-          type: String
-        exists:
-          type: String
-        service:
-          type: String
-      enabled: true
-      list: nodes/$Node_context.node_id/Services
     Disk:
       attrs:
         disk_id:
@@ -217,7 +207,7 @@ namespace.tendrl.node_agent:
             - Node.status
           name: "check whether the node is up"
           help: "Checks if a node is up"
-          run: tendrl.node_agent.atoms.node.check_node_up
+          run: tendrl.node_agent.objects.node.atoms.check_node_up.CheckNodeUp
           type: Create
           uuid: eda0b13a-7362-48d5-b5ca-4b6d6533a5ab
       attrs:
@@ -253,9 +243,7 @@ namespace.tendrl.node_agent:
               - Package.version
           name: "Install Package"
           help: "Checks if a package is installed"
-          post_run:
-            - tendrl.node_agent.atoms.package.validations.check_package_installed
-          run: tendrl.node_agent.atoms.package.install.Install
+          run: tendrl.node_agent.objects.package.atoms.install.Install
           type: Create
           uuid: 16abcfd0-aca9-4022-aa0f-5de1c5a742c7
       attrs:
@@ -271,20 +259,6 @@ namespace.tendrl.node_agent:
           type: String
       enabled: true
     Process:
-      atoms:
-        start:
-          enabled: true
-          inputs:
-            mandatory:
-              - Service.config_path
-              - Service.config_data
-          name: "Configure Service"
-          help: "Checks if a service is running"
-          post_run:
-            - tendrl.node_agent.atoms.service.validations.check_service_running
-          run: tendrl.node_agent.atoms.service.configure.Configure
-          type: Update
-          uuid: b90a0d97-8c9f-4ab1-8f64-dbb5638159a3
       attrs:
         name:
           help: "Name of the service"
@@ -294,6 +268,15 @@ namespace.tendrl.node_agent:
           type: String
       enabled: true
     Service:
+      attrs:
+        running:
+          type: String
+        exists:
+          type: String
+        service:
+          type: String
+      enabled: true
+      list: nodes/$Node_context.node_id/Services
       atoms:
         start_integration_service:
           enabled: true
@@ -303,22 +286,9 @@ namespace.tendrl.node_agent:
               - Tendrl_context.cluster_id
           name: "Start integration service on node"
           help: "starts the integration service on node"
-          run: tendrl.node_agent.atoms.service.start_integration_service.StartIntegrationService
+          run: tendrl.node_agent.objects.service.atoms.start_integration_service.StartIntegrationService
           type: Create
           uuid: dc8fff3a-34d9-4786-9282-55eff6abb9c8
-        configure:
-          enabled: true
-          inputs:
-            mandatory:
-              - Service.config_path
-              - Service.config_data
-          name: "Configure Service"
-          help: "Checks if a service is running"
-          post_run:
-            - tendrl.node_agent.atoms.service.validations.check_service_running
-          run: tendrl.node_agent.atoms.service.configure.Configure
-          type: Update
-          uuid: b90a0d97-8c9f-4ab1-8f64-dbb5638159a3
       attrs:
         config_data:
           help: "Configuration data for the service"
@@ -401,7 +371,7 @@ namespace.tendrl.node_agent:
               - Config.file_path
           name: "Write configuration data"
           help: "Writes the configuration data"
-          run: tendrl.node_agent.objects.File.atoms.write.Write
+          run: tendrl.node_agent.objects.file.atoms.write.Write
           uuid: b90a0d97-8c9f-4ab1-8f64-dbb5638159a5
       attrs:
         data:
@@ -453,7 +423,7 @@ namespace.tendrl.node_agent.gluster_integration:
           enabled: true
           name: "Check cluster id existence"
           help: "Checks if a cluster id exists"
-          run: tendrl.node_agent.gluster_integration.objects.Tendrl_context.atoms.check_cluster_id_exists.CheckClusterIdExists
+          run: tendrl.node_agent.gluster_integration.objects.tendrl_context.atoms.check_cluster_id_exists.CheckClusterIdExists
           uuid: b90a0d97-8c9f-4ab1-8f64-dbb5638159a4
       enabled: True
       attrs:
@@ -480,7 +450,7 @@ namespace.tendrl.node_agent.gluster_integration:
           outputs:
             - Config.data
             - Config.file_path
-          run: tendrl.node_agent.gluster_integration.objects.Config.atoms.generate.Generate
+          run: tendrl.node_agent.gluster_integration.objects.config.atoms.generate.Generate
           uuid: 807a1ead-bd70-4f55-99d0-dbd9d76d2a10
       attrs:
         data:
@@ -530,7 +500,7 @@ namespace.tendrl.node_agent.ceph_integration:
           enabled: true
           name: "Check cluster id existence"
           help: "Checks if a cluster id exists"
-          run: tendrl.node_agent.ceph_integration.objects.Tendrl_context.atoms.check_cluster_id_exists.CheckClusterIdExists
+          run: tendrl.node_agent.ceph_integration.objects.tendrl_context.atoms.check_cluster_id_exists.CheckClusterIdExists
           uuid: b90a0d97-8c9f-4ab1-8f64-dbb5638159a1
       enabled: True
       attrs:
@@ -557,7 +527,7 @@ namespace.tendrl.node_agent.ceph_integration:
           outputs:
             - Config.data
             - Config.file_path
-          run: tendrl.node_agent.ceph_integration.objects.Config.atoms.generate.Generate
+          run: tendrl.node_agent.ceph_integration.objects.config.atoms.generate.Generate
           uuid: 61959242-628f-4847-a5e2-2c8d8daac0cd
       attrs:
         data:
